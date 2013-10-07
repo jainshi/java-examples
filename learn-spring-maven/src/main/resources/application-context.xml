@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="test" />
+
+	<bean id="helloGreeting" class="test.spring.service.impl.HelloGreetingServiceImpl">
+	</bean>
+
+	<!-- Sequence generator with setter injection -->
+	<bean id="seqGen1" name="sequenceGenerator, generator" class="test.spring.sequence.SequenceGenerator">
+		<property name="prefix">
+			<value>30</value>
+		</property>
+		<property name="suffix">
+			<value>A</value>
+		</property>
+		<property name="initial">
+			<value>100000</value>
+		</property>
+	</bean>
+
+	<!-- Sequence generator with constructor injection -->
+	<bean id="seqGen2" name="sequenceGenerator2, generator2" class="test.spring.sequence.SequenceGenerator">
+		<constructor-arg>
+			<value>40</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>B</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>200000</value>
+		</constructor-arg>
+	</bean>
+
+	<!-- Sequence generator with setter injection using p schema -->
+	<bean id="sequenceGenerator3" class="test.spring.sequence.SequenceGenerator"
+		p:prefix="50" p:suffix="C" p:initial="300000" />
+
+
+	<bean id="datePrefixGenerator" class="test.spring.sequence.DatePrefixGenerator">
+		<property name="pattern" value="yyyy-MM-dd" />
+	</bean>
+	<bean id="aaa" class="test.spring.service.lifecycle.Battery">
+		<property name="name" value="AAA" />
+		<property name="price" value="2.5" />
+	</bean>
+	<bean id="cdrw" class="test.spring.service.lifecycle.Disc">
+		<property name="name" value="CD-RW" />
+		<property name="price" value="1.5" />
+	</bean>
+	<bean id="dvdrw" class="test.spring.service.lifecycle.Disc">
+		<property name="name" value="DVD-RW" />
+		<property name="price" value="3.0" />
+	</bean>
+	<bean id="shoppingCart" class="test.spring.service.lifecycle.ShoppingCart"
+		scope="prototype" />
+
+	<!-- <bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" /> -->
+
+	<bean id="cashier1" class="test.spring.service.lifecycle.Cashier">
+		<!-- init-method="openFile" destroy-method="closeFile"> -->
+		<property name="name" value="cashier1" />
+		<property name="path" value="c:/toDelete" />
+	</bean>
+</beans>
