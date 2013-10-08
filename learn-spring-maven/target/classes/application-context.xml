@@ -22,7 +22,7 @@
 	<bean id="unitCalculator" class="test.spring.aspect.calculator.UnitCalculatorImpl" />
 
 	<bean class="test.spring.aspect.calculator.CalculatorLoggingAspect" />
-
+	<bean class="test.spring.aspect.calculator.CalculatorValidationAspect" />
 
 	<bean id="helloGreeting" class="test.spring.service.impl.HelloGreetingServiceImpl">
 	</bean>
