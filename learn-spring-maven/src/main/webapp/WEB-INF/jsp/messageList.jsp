@@ -4,6 +4,7 @@
 <title>Message List</title>
 </head>
 <body>
+	<a href="<c:url value="/login.jsp" />">Login</a>
 	<c:forEach items="${messages}" var="message">
 		<table>
 			<tr>

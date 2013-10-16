@@ -1,1 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+	
+	<!-- <http auto-config="true">
+		<intercept-url pattern="/messageList*" access="ROLE_USER,ROLE_ANONYMOUS" />
+		<intercept-url pattern="/messagePost*" access="ROLE_USER" />
+		<intercept-url pattern="/messageDelete*" access="ROLE_ADMIN" />
+	</http> -->
+
+	<http>
+		<intercept-url pattern="/messageList*" access="ROLE_USER,ROLE_ANONYMOUS" />
+		<intercept-url pattern="/messagePost*" access="ROLE_USER" />
+		<intercept-url pattern="/messageDelete*" access="ROLE_ADMIN" />
+		
+		<form-login login-page="/login.jsp" default-target-url="/messageList"
+			authentication-failure-url="/login.jsp?error=true" />
+	</http>
+
+ 
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="admin" password="secret" authorities="ROLE_ADMIN,ROLE_USER" />
+				<user name="user1" password="1111" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>
+
+<!-- 
+Normally, the default namespace of a bean configuration file is beans, 
+so you can use the <bean> and <property> elements without the beans prefix. 
+However, if you use this style to declare the Spring Security services,
+all security elements must be appended with the security prefix. 
+Because the elements in a security configuration file are mostly 
+Spring Security’s, you can define security as the default namespace
+instead, so you can use them without the security prefix.
+ -->
