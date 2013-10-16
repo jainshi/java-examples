@@ -1,4 +1,4 @@
-package com.my.teller.aop.auditog.constants;
+package com.my.teller.aop.auditlog.constants;
 
 public enum UserAction {
 
