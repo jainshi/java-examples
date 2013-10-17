@@ -1,12 +1,13 @@
 package com.my.teller.aop.auditlog.service;
 
+import com.my.teller.aop.auditlog.constants.AuditCategory;
 import com.my.teller.aop.auditlog.constants.AuditLoggable;
-import com.my.teller.aop.auditlog.constants.LogLevel;
+import com.my.teller.aop.auditlog.constants.ServiceId;
 import com.my.teller.aop.auditlog.constants.UserAction;
 
 public class TellerService {
 
-	@AuditLoggable(level = LogLevel.INFO, startAction = UserAction.STARTED, completeAction = UserAction.COMPLETED, failAction = UserAction.FAILED, message = "Some common message to the log")
+	@AuditLoggable(category=AuditCategory.TRACK, action=UserAction.OPEN_TELLER, serviceId=ServiceId.TELLER_SERVICE, message = "Some common message to the log")
 	public void openTeller(String userId, String tellerId) {
 		if(tellerId == null) {
 			throw new RuntimeException("Oh teller id is null... are you sure?");

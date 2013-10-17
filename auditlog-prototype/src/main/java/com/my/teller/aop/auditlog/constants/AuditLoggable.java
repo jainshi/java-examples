@@ -11,9 +11,9 @@ import java.lang.annotation.Target;
 @Documented
 public @interface AuditLoggable {
 
-	UserAction startAction();
-	UserAction completeAction();
-	UserAction failAction() default UserAction.NONE;
-	LogLevel level();
+	AuditCategory category();
+	ServiceId serviceId();
+	UserAction action();
+	
 	String message() default "";
 }

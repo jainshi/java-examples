@@ -2,11 +2,16 @@ package com.my.teller.aop.auditlog.constants;
 
 public enum UserAction {
 
-	STARTED("Started"),
+	OPEN_TELLER("Open teller"),
+	CLOSE_TELLER("Close teller"),
+	CREATE_TELLER("Create teller");
+	
+	
+	/*STARTED("Started"),
 	VIEWNG("Viewing"),
 	COMPLETED("Completed"),
 	FAILED("Failed"),
-	NONE("None");
+	NONE("None");*/
 	
 	private String action;
 	
